@@ -33,7 +33,7 @@ const Ticket = new Schema(
         default: '',
       },
     },
-    busId: {
+    bus: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Bus',
     },
