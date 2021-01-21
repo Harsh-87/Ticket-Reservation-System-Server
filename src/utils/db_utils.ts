@@ -10,6 +10,10 @@ exports.getBusInfoAdmin = async (bus_id) => {
   return await Bus.findById(bus_id).populate('seats.ticket_id');
 };
 
+exports.getBus = async (bus_id) => {
+  return await Bus.findById(bus_id);
+};
+
 exports.getBuses = async (query) => {
   return await Bus.find({ from: query.from, to: query.to, departure: query.date });
 };
