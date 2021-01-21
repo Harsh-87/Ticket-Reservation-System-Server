@@ -23,3 +23,21 @@ exports.createBus = async (data, seatCount) => {
   bus.seats = seats;
   return await bus.save();
 };
+
+exports.bookTicket = async (details, seat_no, bus_id) => {
+  const bookticket = new Ticket(details);
+  const ticket = await bookticket.save();
+  await Bus.update(
+    { _id: bus_id, 'seats.seat_no': seat_no },
+    { $set: { 'seats.$.ticket_id': ticket._id, 'seats.$.status': 'close' } },
+  );
+  return ticket;
+};
+
+exports.cancelTicket = async (ticket_id, bus_id, seat_no) => {
+  await Ticket.update({ _id: ticket_id }, { status: 'Cancelled' });
+  await Bus.update(
+    { _id: bus_id, 'seats.seat_no': seat_no },
+    { $set: { 'seats.$.ticket_id': null, 'seats.$.status': 'open' } },
+  );
+};
