@@ -18,3 +18,8 @@ exports.getBusInfo = async (req: Request, res: Response, next: NextFunction) => 
   const bus = await db_util.getBusInfo(req.params.busId);
   common_util.sendResponse(res, bus);
 };
+
+exports.getBusInfoAdmin = async (req: Request, res: Response, next: NextFunction) => {
+  const bus = await db_util.getBusInfoAdmin(req.params.busId);
+  common_util.sendResponse(res, bus);
+};

@@ -28,7 +28,7 @@ const Bus = new Schema({
   },
   no_of_seats: {
     type: Number,
-    default: 20,
+    default: 40,
   },
   seats: [
     {

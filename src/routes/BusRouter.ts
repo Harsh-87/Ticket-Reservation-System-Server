@@ -28,4 +28,5 @@ busRouter
     common_util.notSupported(res);
   });
 
+busRouter.route('/:busId/admin').get(auth.verifyAdmin, bus_controller.getBusInfoAdmin);
 module.exports = busRouter;
