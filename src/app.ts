@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import logger = require('morgan');
 import passport from 'passport';
 import path from 'path';
@@ -22,6 +23,7 @@ connect.then(
 );
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
