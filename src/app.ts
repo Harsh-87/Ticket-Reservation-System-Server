@@ -45,7 +45,7 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
 };
 app.use(errorHandler);
 
-const port = config.port || 3000;
+const port = config.port || 5000;
 app.listen(port, () => {
   return console.log(`Server is listening on ${port}`);
 });

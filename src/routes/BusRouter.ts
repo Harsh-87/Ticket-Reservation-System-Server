@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-const auth = require('../Authenticate');
+const auth = require('../authenticate');
 const busRouter = express.Router();
 const bus_controller = require('../controllers/BusController');
 const common_util = require('../utils/common_utils');
