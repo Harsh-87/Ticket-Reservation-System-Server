@@ -12,6 +12,6 @@ exports.verifyAdmin = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.send('Unauthorized');
+    res.status(403).send('Unauthorized');
   }
 };
