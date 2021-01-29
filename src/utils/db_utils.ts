@@ -1,8 +1,8 @@
 import { Response } from 'express';
 
-const User = require('../models/user');
-const Bus = require('../models/bus');
-const Ticket = require('../models/ticket');
+const User = require('../models/UserModel');
+const Bus = require('../models/BusModel');
+const Ticket = require('../models/TicketModel');
 
 exports.getTicketInfo = async (ticket_id: String) => {
   return await Ticket.findById(ticket_id).populate('bus');
