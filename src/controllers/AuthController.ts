@@ -10,7 +10,6 @@ exports.Logout = (req: Request, res: Response, next: NextFunction) => {
   if (req.session) {
     req.logOut();
     common_util.sendResponse(res, { success: true, status: 'You are successfully logged out!' });
-    next();
   } else {
     next(new Error('You are not logged in!'));
   }

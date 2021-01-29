@@ -6,7 +6,6 @@ exports.createBus = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bus = await dbUtil.createBus(req.body, req.body.no_of_seats);
     commonUtil.sendResponse(res, bus);
-    return next();
   } catch (err) {
     next(err);
   }
@@ -16,7 +15,6 @@ exports.findAllBuses = async (req: Request, res: Response, next: NextFunction) =
   try {
     const buses = await dbUtil.getBuses(req.query.from, req.query.to, req.query.departure);
     commonUtil.sendResponse(res, buses);
-    return next();
   } catch (err) {
     next(err);
   }
