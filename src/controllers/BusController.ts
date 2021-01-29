@@ -9,7 +9,7 @@ exports.createBus = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 exports.findAllBuses = async (req: Request, res: Response, next: NextFunction) => {
-  const buses = await dbUtil.getBuses(req.query);
+  const buses = await dbUtil.getBuses(req.query.from, req.query.to, req.query.departure);
   commonUtil.sendResponse(res, buses);
   return next();
 };

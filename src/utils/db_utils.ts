@@ -16,10 +16,10 @@ exports.getBusInfo = async (bus_id: String) => {
   return await Bus.findById(bus_id);
 };
 
-exports.getBuses = async (query: any) => {
-  const nextDay = new Date(query.departure);
+exports.getBuses = async (from: string, to: string, departure: string) => {
+  const nextDay = new Date(departure);
   nextDay.setDate(nextDay.getDate() + 1);
-  return await Bus.find({ from: query.from, to: query.to, departure: { $gte: query.departure, $lt: nextDay } });
+  return await Bus.find({ from: from, to: to, departure: { $gte: departure, $lt: nextDay } });
 };
 
 exports.createBus = async (data: any, seatCount: Number) => {
