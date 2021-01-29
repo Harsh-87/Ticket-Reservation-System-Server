@@ -16,5 +16,9 @@ exports.Logout = (req: Request, res: Response, next: NextFunction) => {
 };
 
 exports.Signup = async (req: Request, res: Response, next: NextFunction) => {
-  await db_util.register(req.body.username, req.body.password, req.body.email, res);
+  const callback = (err: any, user: any) => {
+    if (err) res.status(500).end(err);
+    else res.status(200).json(user);
+  };
+  await db_util.register(req.body.username, req.body.password, req.body.email, callback);
 };

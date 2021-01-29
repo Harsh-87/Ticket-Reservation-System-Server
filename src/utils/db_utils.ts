@@ -50,15 +50,14 @@ exports.cancelTicket = async (ticket_id: String, bus_id: String, seat_no: Number
   return await Ticket.update({ _id: ticket_id }, { status: 'Cancelled' });
 };
 
-exports.register = (username: String, password: String, email: String, res: Response) => {
+exports.register = (username: String, password: String, email: String, callback: Function) => {
   User.register(new User({ username: username }), password, (err, user) => {
     if (err) {
       console.log(err);
     } else {
       if (email) user.email = email;
       user.save((err, user) => {
-        if (err) res.status(500).end(err);
-        else res.status(200).json(user);
+        callback(err, user);
       });
     }
   });
