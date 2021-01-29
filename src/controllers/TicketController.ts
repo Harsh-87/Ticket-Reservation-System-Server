@@ -4,22 +4,34 @@ const dbUtil = require('../utils/db_utils');
 const commonUtil = require('../utils/common_utils');
 
 exports.Book = async (req: Request, res: Response, next: NextFunction) => {
-  const ticket = await dbUtil.bookTicket(req.body, req.body.seat_no, req.body.bus);
-  const newticket = await dbUtil.getTicketInfo(ticket._id);
-  commonUtil.sendResponse(res, newticket);
+  try {
+    const ticket = await dbUtil.bookTicket(req.body, req.body.seat_no, req.body.bus);
+    const newticket = await dbUtil.getTicketInfo(ticket._id);
+    commonUtil.sendResponse(res, newticket);
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.Cancel = async (req: Request, res: Response, next: NextFunction) => {
-  await dbUtil.cancelTicket(req.query.ticketId, req.query.busId, req.query.seat_no);
-  const ticket = await dbUtil.getTicketInfo(req.query.ticketId);
-  commonUtil.sendResponse(res, ticket);
+  try {
+    await dbUtil.cancelTicket(req.query.ticketId, req.query.busId, req.query.seat_no);
+    const ticket = await dbUtil.getTicketInfo(req.query.ticketId);
+    commonUtil.sendResponse(res, ticket);
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.Info = async (req: Request, res: Response, next: NextFunction) => {
-  if (ObjectId.isValid(req.query.ticketId)) {
-    const ticket = await dbUtil.getTicketInfo(req.query.ticketId);
-    commonUtil.sendResponse(res, ticket);
-  } else {
-    commonUtil.sendResponse(res, {});
+  try {
+    if (ObjectId.isValid(req.query.ticketId)) {
+      const ticket = await dbUtil.getTicketInfo(req.query.ticketId);
+      commonUtil.sendResponse(res, ticket);
+    } else {
+      commonUtil.sendResponse(res, {});
+    }
+  } catch (err) {
+    next(err);
   }
 };
