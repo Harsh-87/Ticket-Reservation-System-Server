@@ -1,32 +1,32 @@
 import express, { NextFunction, Request, Response } from 'express';
 const auth = require('../authenticate');
 const busRouter = express.Router();
-const bus_controller = require('../controllers/BusController');
-const common_util = require('../utils/common_utils');
+const busController = require('../controllers/BusController');
+const commonUtil = require('../utils/common_utils');
 
 busRouter
   .route('/')
-  .get(bus_controller.findAllBuses)
-  .post(auth.verifyAdmin, bus_controller.createBus)
+  .get(busController.findAllBuses)
+  .post(auth.verifyAdmin, busController.createBus)
   .put((req: Request, res: Response, next: NextFunction) => {
-    common_util.notSupported(res);
+    commonUtil.notSupported(res);
   })
   .delete((req: Request, res: Response, next: NextFunction) => {
-    common_util.notSupported(res);
+    commonUtil.notSupported(res);
   });
 
 busRouter
   .route('/:busId')
-  .get(bus_controller.getBusInfo)
+  .get(busController.getBusInfo)
   .post((req: Request, res: Response, next: NextFunction) => {
-    common_util.notSupported(res);
+    commonUtil.notSupported(res);
   })
   .put((req: Request, res: Response, next: NextFunction) => {
-    common_util.notSupported(res);
+    commonUtil.notSupported(res);
   })
   .delete((req: Request, res: Response, next: NextFunction) => {
-    common_util.notSupported(res);
+    commonUtil.notSupported(res);
   });
 
-busRouter.route('/:busId/admin').get(auth.verifyAdmin, bus_controller.getBusInfoAdmin);
+busRouter.route('/:busId/admin').get(auth.verifyAdmin, busController.getBusInfoAdmin);
 module.exports = busRouter;
