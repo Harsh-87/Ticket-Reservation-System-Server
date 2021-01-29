@@ -6,5 +6,5 @@ exports.notSupported = (res: Response) => {
 };
 
 exports.sendResponse = (res: Response, data: Object) => {
-  res.status(200).contentType('application/json').json(data);
+  res.status(200).json(data);
 };
