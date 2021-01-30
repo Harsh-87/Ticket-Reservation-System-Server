@@ -1,13 +1,13 @@
 import express, { NextFunction, Request, Response } from 'express';
 const auth = require('../authenticate');
-const busRouter = express.Router();
+const movieRouter = express.Router();
 const movieController = require('../controllers/movieController');
 const commonUtil = require('../utils/commonUtils');
 
-busRouter
+movieRouter
   .route('/')
-  .get(movieController.findAllBuses)
-  .post(auth.verifyAdmin, movieController.createBus)
+  .get(movieController.findAllMovies)
+  .post(auth.verifyAdmin, movieController.createMovie)
   .put((req: Request, res: Response, next: NextFunction) => {
     commonUtil.notSupported(res);
   })
@@ -15,9 +15,9 @@ busRouter
     commonUtil.notSupported(res);
   });
 
-busRouter
-  .route('/:busId')
-  .get(movieController.getBusInfo)
+movieRouter
+  .route('/:movieId')
+  .get(movieController.getMovieInfo)
   .post((req: Request, res: Response, next: NextFunction) => {
     commonUtil.notSupported(res);
   })
@@ -28,5 +28,5 @@ busRouter
     commonUtil.notSupported(res);
   });
 
-busRouter.route('/:busId/admin').get(auth.verifyAdmin, movieController.getBusInfoAdmin);
-module.exports = busRouter;
+movieRouter.route('/:movieId/admin').get(auth.verifyAdmin, movieController.getMovieInfoAdmin);
+module.exports = movieRouter;

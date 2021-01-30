@@ -1,38 +1,39 @@
 import { NextFunction, Request, Response } from 'express';
-const dbUtil = require('../utils/db_utils');
-const commonUtil = require('../utils/common_utils');
+const dbUtil = require('../utils/dbUtils');
+const commonUtil = require('../utils/commonUtils');
 
-exports.createBus = async (req: Request, res: Response, next: NextFunction) => {
+exports.createMovie = async (req: Request, res: Response, next: NextFunction) => {
+  const DEFAULT_NUM_SEATS = 40;
   try {
-    const bus = await dbUtil.createBus(req.body, req.body.no_of_seats);
-    commonUtil.sendResponse(res, bus);
+    const movie = await dbUtil.createMovie(req.body, req.body.no_of_seats || DEFAULT_NUM_SEATS);
+    commonUtil.sendResponse(res, movie);
   } catch (err) {
     next(err);
   }
 };
 
-exports.findAllBuses = async (req: Request, res: Response, next: NextFunction) => {
+exports.findAllMovies = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const buses = await dbUtil.getBuses(req.query.from, req.query.to, req.query.departure);
-    commonUtil.sendResponse(res, buses);
+    const movies = await dbUtil.getMovies(req.query.title, req.query.timing);
+    commonUtil.sendResponse(res, movies);
   } catch (err) {
     next(err);
   }
 };
 
-exports.getBusInfo = async (req: Request, res: Response, next: NextFunction) => {
+exports.getMovieInfo = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const bus = await dbUtil.getBusInfo(req.params.busId);
-    commonUtil.sendResponse(res, bus);
+    const movie = await dbUtil.getMovieInfo(req.params.movieId);
+    commonUtil.sendResponse(res, movie);
   } catch (err) {
     next(err);
   }
 };
 
-exports.getBusInfoAdmin = async (req: Request, res: Response, next: NextFunction) => {
+exports.getMovieInfoAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const bus = await dbUtil.getBusInfoAdmin(req.params.busId);
-    commonUtil.sendResponse(res, bus);
+    const movie = await dbUtil.getMovieInfoAdmin(req.params.movieId);
+    commonUtil.sendResponse(res, movie);
   } catch (err) {
     next(err);
   }
