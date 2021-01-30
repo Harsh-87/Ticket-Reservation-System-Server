@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 const ObjectId = require('mongoose').Types.ObjectId;
-const dbUtil = require('../utils/db_utils');
-const commonUtil = require('../utils/common_utils');
+const dbUtil = require('../utils/dbUtils');
+const commonUtil = require('../utils/commonUtils');
 
 exports.Book = async (req: Request, res: Response, next: NextFunction) => {
   try {

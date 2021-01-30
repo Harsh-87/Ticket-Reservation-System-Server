@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import passport from 'passport';
 const adminRouter = express.Router();
 const commonUtil = require('../utils/common_utils');
-const authController = require('../controllers/AuthController');
+const authController = require('../controllers/authController');
 
 adminRouter.route('/login').post(passport.authenticate('local'), authController.Login);
 

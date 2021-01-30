@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 const ticketRouter = express.Router();
-const commonUtil = require('../utils/common_utils');
-const ticketController = require('../controllers/TicketController');
+const commonUtil = require('../utils/commonUtils');
+const ticketController = require('../controllers/ticketController');
 
 ticketRouter
   .route('/')

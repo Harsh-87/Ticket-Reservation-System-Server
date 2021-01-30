@@ -7,9 +7,9 @@ import passport from 'passport';
 import path from 'path';
 const app = express();
 const config = require('./config');
-const busRouter = require('./routes/BusRouter');
-const ticketRouter = require('./routes/TicketRouter');
-const adminRouter = require('./routes/AdminRouter');
+const movieRouter = require('./routes/movieRouter');
+const ticketRouter = require('./routes/ticketRouter');
+const adminRouter = require('./routes/adminRouter');
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url);
@@ -45,7 +45,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/admin', adminRouter);
-app.use('/bus', busRouter);
+app.use('/bus', movieRouter);
 app.use('/ticket', ticketRouter);
 
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
