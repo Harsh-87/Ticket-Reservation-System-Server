@@ -1,5 +1,6 @@
 import mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const modelNames = require('./modelNames');
 
 const Ticket = new Schema(
   {
@@ -35,7 +36,7 @@ const Ticket = new Schema(
     },
     bus: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Bus',
+      ref: modelNames.MOVIE_MODEL_NAME,
     },
   },
   {
@@ -43,4 +44,4 @@ const Ticket = new Schema(
   },
 );
 
-module.exports = mongoose.model('Ticket', Ticket);
+module.exports = mongoose.model(modelNames.TICKET_MODEL_NAME, Ticket);

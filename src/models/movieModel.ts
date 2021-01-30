@@ -1,29 +1,18 @@
 import mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const modelNames = require('./modelNames');
 
-const Bus = new Schema({
-  from: {
+const movieSchema = new Schema({
+  theatre: {
     type: String,
-    default: '',
+    required: true,
   },
-  to: {
+  title: {
     type: String,
-    default: '',
+    required: true,
   },
-  Company: {
-    type: String,
-    default: '',
-  },
-  departure: {
+  timing: {
     type: Date,
-    default: '',
-  },
-  arrival: {
-    type: Date,
-    default: '',
-  },
-  bus_no: {
-    type: String,
     default: '',
   },
   no_of_seats: {
@@ -35,7 +24,7 @@ const Bus = new Schema({
       seat_no: String,
       ticket_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Ticket',
+        ref: modelNames.TICKET_MODEL_NAME,
         default: null,
       },
       status: {
@@ -46,4 +35,4 @@ const Bus = new Schema({
   ],
 });
 
-module.exports = mongoose.model('Bus', Bus);
+module.exports = mongoose.model(modelNames.MOVIE_MODEL_NAME, movieSchema);
