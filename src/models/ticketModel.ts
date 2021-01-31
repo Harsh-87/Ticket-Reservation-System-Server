@@ -34,7 +34,7 @@ const Ticket = new Schema(
         default: '',
       },
     },
-    bus: {
+    movie: {
       type: mongoose.Schema.Types.ObjectId,
       ref: modelNames.MOVIE_MODEL_NAME,
     },

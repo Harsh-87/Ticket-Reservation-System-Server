@@ -5,7 +5,7 @@ const commonUtil = require('../utils/commonUtils');
 
 exports.Book = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const ticket = await dbUtil.bookTicket(req.body, req.body.seat_no, req.body.bus);
+    const ticket = await dbUtil.bookTicket(req.body, req.body.seat_no, req.body.movie);
     const newticket = await dbUtil.getTicketInfo(ticket._id);
     commonUtil.sendResponse(res, newticket);
   } catch (err) {
@@ -15,7 +15,7 @@ exports.Book = async (req: Request, res: Response, next: NextFunction) => {
 
 exports.Cancel = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await dbUtil.cancelTicket(req.query.ticketId, req.query.busId, req.query.seat_no);
+    await dbUtil.cancelTicket(req.query.ticketId, req.query.movieId, req.query.seat_no);
     const ticket = await dbUtil.getTicketInfo(req.query.ticketId);
     commonUtil.sendResponse(res, ticket);
   } catch (err) {

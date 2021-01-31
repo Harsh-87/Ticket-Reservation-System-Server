@@ -5,7 +5,7 @@ const movieModel = require('../models/movieModel');
 const ticketModel = require('../models/ticketModel');
 
 exports.getTicketInfo = async (ticket_id: String) => {
-  return await ticketModel.findById(ticket_id).populate('bus');
+  return await ticketModel.findById(ticket_id).populate('movie');
 };
 
 exports.getMovieInfoAdmin = async (movieId: String) => {
